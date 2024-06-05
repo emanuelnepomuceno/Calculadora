@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Idade para Namorar</title>
+<link rel="shortcut icon" href="https://lh3.googleusercontent.com/drive-storage/AKHj6E651XlTR-war7n93KNaUIwh3AceeaSNMdwFXeiMNn2VMVR_u4MifRb93K_NxT2PxbgUM0lwwt2IeNW5N16OKxttAg2MF-FdBxAPEyAP_g=w1897-h958">
+    <link rel="stylesheet" type="text/css" href="Calculadora.css">
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Idade para Namoro</title>
+</head>
+<body>
+
+<h2>Calculadora de Idade para Namoro</h2>
+
+<p>Diga sua idade:</p>
+<input type="number" id="idadeInput">
+<p>Diga sua idade em meses:</p>
+<input type="number" id="mesesInput">
+<button onclick="calcularIdade()">Calcular</button>
+
+<p id="idadeMinima"></p>
+<p id="idadeMaxima"></p>
+<p id="comparativoIdades"></p>
+<p id="comparativoTrisal"></p>
+
+<script>
+    function calcularIdade() {
+        var idade = Number(document.getElementById("idadeInput").value);
+        var meses = Number(document.getElementById("mesesInput").value);
+        idade += meses / 12; // Adicionando meses à idade em anos
+        var idadeMinima = Math.ceil((idade / 2) + 7); // Arredondando para cima
+        var idadeMaxima = Math.floor((idade - 7) * 2); // Arredondando para baixo
+        var comparativoIdades = "";
+        var comparativoTrisal = "";
+
+        if (idade > 100) {
+            document.getElementById("idadeMinima").textContent = "Você não pode namorar, é maior de 100 anos!";
+            document.getElementById("idadeMaxima").textContent = "";
+            document.getElementById("comparativoIdades").textContent = "";
+            document.getElementById("comparativoTrisal").textContent = "";
+            return;
+        }
+
+        if (idade < 13) {
+            document.getElementById("idadeMinima").textContent = "Você não pode namorar, é menor de 13 anos!";
+            document.getElementById("idadeMaxima").textContent = "";
+            document.getElementById("comparativoIdades").textContent = "";
+            document.getElementById("comparativoTrisal").textContent = "";
+            return;
+        }
+
+        document.getElementById("idadeMinima").textContent = "Idade mínima para namorar: " + idadeMinima + " anos";
+        document.getElementById("idadeMaxima").textContent = "Idade máxima para namorar: " + idadeMaxima + " anos";
+
+        var outraIdade = Number(prompt("Qual a idade da outra pessoa?"));
+        if (outraIdade >= idadeMinima && outraIdade <= idadeMaxima) {
+            comparativoIdades = "Vocês podem namorar!";
+        } else {
+            comparativoIdades = "Vocês não podem namorar!";
+        }
+        document.getElementById("comparativoIdades").textContent = comparativoIdades;
+
+        var terceiraIdade = Number(prompt("Qual a idade da terceira pessoa?"));
+        if ((idade + terceiraIdade) / 2 >= idadeMinima && (idade + terceiraIdade) / 2 <= idadeMaxima) {
+            comparativoTrisal = "Vocês podem namorar em um trisal!";
+        } else {
+            comparativoTrisal = "Vocês não podem namorar em um trisal!";
+        }
+        document.getElementById("comparativoTrisal").textContent = comparativoTrisal;
+    }
+</script>
+
+</body>
+</html>
